@@ -14,12 +14,16 @@ function ShelfDisplay() {
         dispatch(action);
     }, []);
 
+    const handleDelete = (item) => {
+        dispatch({type: 'DELETE_ITEM', payload: item})
+    }
     return (
         <div>
             {displayReducer.map((item, i) => {
                 return <div key={i}> 
                 <img src={item.image_url}></img>
                 <p>{item.description}</p>
+                <button onClick={ () => handleDelete(item)}>DELETE</button>
             </div>}
 
             )}

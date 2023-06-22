@@ -14,6 +14,16 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // endpoint functionality
+
+  const queryText = `INSERT INTO "item" ("image_url" , "description" , "user_id") VALUES ($1, $2, $3)`
+  console.log(req.body);
+  pool.query(queryText, [req.body.image_url , req.body.description , ])
+  .then(result => {
+
+    res.sendStatus(201)
+  }).catch(err => {
+    console.log('Error in POST /shelf.router' , err)
+  })
 });
 
 /**

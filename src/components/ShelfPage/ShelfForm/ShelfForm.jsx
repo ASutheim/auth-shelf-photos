@@ -26,30 +26,29 @@ function ShelfForm () {
 
         <>
         <form onSubmit={(event)=>handleSubmit(event)}>
-            <lable for="PicUrl">Picture URL: </lable>
-            <input
-            name="PicUrl"
-            value={url}
-            placeholder="Enter url"
-            onChange={(e) => setUrl(e.target.value)}
-            type="text"
-            required
-            />
+            <legend>New Picture Form</legend>
+                <lable htmlFor="PicUrl">Picture URL: </lable>
+                <input
+                name="PicUrl"
+                value={url}
+                placeholder="Enter url"
+                onChange={(e) => setUrl(e.target.value)}
+                type="text"
+                required
+                />
 
-            <input 
-            value={description}
-            placeholder="Description"
-            onChange={(e) => setDescription(e.target.value)}
-            type="text"
-            required
-            />
-            
-            <button type="submit">Submit</button>
-            
-           
-
-
-
+                
+                <lable htmlFor="Description">Description: </lable>
+                <input
+                name="Description"
+                value={description}
+                placeholder="Description"
+                onChange={(e) => setDescription(e.target.value)}
+                type="text"
+                required
+                />
+                
+                <button type="submit">Submit</button>
 
         </form>
         </>

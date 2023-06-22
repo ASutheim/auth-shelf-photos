@@ -6,8 +6,25 @@ const router = express.Router();
  * Get all of the items on the shelf
  */
 router.get('/', (req, res) => {
-  res.sendStatus(200); // For testing only, can be removed
+  console.log("Inside router side of get request");
+
+  if (req.isAuthenticated()) {
+  const queryText = `SELECT * FROM "items"`;
+  pool
+  .query(queryText)
+  .then((result) => {
+    res.send(result.rows);
+    console.log("Sending items back from the server:", result.rows);
+  }).catch((error) => {
+    console.log("Error in fetching data from database", error)
+    res.sendStatus(500);
+  });
+}
+else {
+  res.sendStatus(403);
+}
 });
+
 
 /**
  * Add an item for the logged in user to the shelf

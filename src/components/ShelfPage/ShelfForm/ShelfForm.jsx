@@ -25,8 +25,10 @@ function ShelfForm () {
     return (
 
         <>
-        <form onSubmit={handleSubmit()}>
+        <form onSubmit={(event)=>handleSubmit(event)}>
+            <lable for="PicUrl">Picture URL: </lable>
             <input
+            name="PicUrl"
             value={url}
             placeholder="Enter url"
             onChange={(e) => setUrl(e.target.value)}

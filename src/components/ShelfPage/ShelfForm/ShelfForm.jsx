@@ -27,7 +27,7 @@ function ShelfForm () {
         <>
         <form onSubmit={(event)=>handleSubmit(event)}>
             <legend>New Picture Form</legend>
-                <lable htmlFor="PicUrl">Picture URL: </lable>
+                <label htmlFor="PicUrl">Picture URL: </label>
                 <input
                 name="PicUrl"
                 value={url}
@@ -38,7 +38,7 @@ function ShelfForm () {
                 />
 
                 
-                <lable htmlFor="Description">Description: </lable>
+                <label htmlFor="Description">Description: </label>
                 <input
                 name="Description"
                 value={description}

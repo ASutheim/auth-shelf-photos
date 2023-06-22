@@ -30,17 +30,21 @@ else {
  * Add an item for the logged in user to the shelf
  */
 router.post('/', (req, res) => {
-  // endpoint functionality
 
-  const queryText = `INSERT INTO "item" ("image_url" , "description" , "user_id") VALUES ($1, $2, $3)`
-  console.log(req.body);
-  pool.query(queryText, [req.body.image_url , req.body.description , ])
-  .then(result => {
+    if (req.isAuthenticated()){ 
 
-    res.sendStatus(201)
-  }).catch(err => {
-    console.log('Error in POST /shelf.router' , err)
-  })
+        const queryText = `INSERT INTO "item" ("image_url" , "description" , "user_id") VALUES ($1, $2, $3)`
+        console.log(req.body);
+        console.log(req.user);
+        pool.query(queryText, [req.body.image_url , req.body.description , req.user.id ])
+            .then(result => {
+                res.sendStatus(201)
+            }).catch(err => {
+                console.log('Error in POST /shelf.router' , err)
+            })
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 /**

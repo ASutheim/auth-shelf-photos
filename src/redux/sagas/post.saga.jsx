@@ -6,7 +6,7 @@ function*  postPicture(action) {
     console.log(action.payload);
     try{
         yield axios.post('/api/shelf', action.payload);
-        put({type:"FETCH_ITEMS"});
+        yield put({type:"FETCH_ITEMS"});
     } catch {
         console.log('error with post request in post saga');
     }

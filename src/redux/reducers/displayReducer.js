@@ -1,4 +1,4 @@
-const displayReducer = (state = {}, action) => {
+const displayReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_ITEMS':
         return action.payload;

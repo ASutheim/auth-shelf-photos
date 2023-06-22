@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   console.log("Inside router side of get request");
 
   if (req.isAuthenticated()) {
-  const queryText = `SELECT * FROM "items"`;
+  const queryText = `SELECT * FROM "item"`;
   pool
   .query(queryText)
   .then((result) => {
@@ -41,6 +41,7 @@ router.post('/', (req, res) => {
                 res.sendStatus(201)
             }).catch(err => {
                 console.log('Error in POST /shelf.router' , err)
+                res.sendStatus(500)
             })
     } else {
         res.sendStatus(403);

@@ -10,16 +10,18 @@ function ShelfForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Info to be sent from Form Submit:", file, description);
 
-    const formData = new FormData();
-    formData.append("image", file);
-    formData.append("description", description);
+    // const formData = new FormData();
+    // formData.append("image", file);
+    // formData.append("description", description);
 
     dispatch({
       type: "POST_IMAGE",
-      payload: formData,
+      payload: { file: file, description: description },
     });
 
+    setFile();
     setDescription("");
   };
 

@@ -2,10 +2,9 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-
-
-
+// require('dotenv').config();
 const app = express();
+const fileUpload = require("express-fileupload");
 
 const sessionMiddleware = require("./modules/session-middleware");
 const passport = require("./strategies/user.strategy");
@@ -31,6 +30,8 @@ app.use("/api/shelf", shelfRouter);
 
 // Serve static files
 app.use(express.static("build"));
+
+app.use(fileUpload());
 
 // App Set //
 const PORT = process.env.PORT || 5000;

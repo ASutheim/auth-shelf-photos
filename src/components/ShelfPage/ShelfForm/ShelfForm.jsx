@@ -1,60 +1,44 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function ShelfForm () {
+function ShelfForm() {
+  const dispatch = useDispatch();
+  // const [url , setUrl] = useState('')
 
-    const dispatch = useDispatch();
-    const [url , setUrl] = useState('')
-    const [description , setDescription] = useState('');
+  const [file, setFile] = useState();
+  const [description, setDescription] = useState("");
 
-    const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("description", description);
 
-        event.preventDefault();
+    dispatch({
+      type: "POST_IMAGE",
+      payload: formData,
+    });
 
-        dispatch({
-            type: 'POST_IMAGE',
-            payload: {image_url: url , description: description}
-        })
+    setDescription("");
+  };
 
-        setUrl('')
-        setDescription('');
-    }
-
-
-    return (
-
-        <>
-        <form onSubmit={(event)=>handleSubmit(event)}>
-            <legend>New Picture Form</legend>
-                <label htmlFor="PicUrl">Picture URL: </label>
-                <input
-                name="PicUrl"
-                value={url}
-                placeholder="Enter url"
-                onChange={(e) => setUrl(e.target.value)}
-                type="text"
-                required
-                />
-
-                
-                <label htmlFor="Description">Description: </label>
-                <input
-                name="Description"
-                value={description}
-                placeholder="Description"
-                onChange={(e) => setDescription(e.target.value)}
-                type="text"
-                required
-                />
-                
-                <button type="submit">Submit</button>
-
-        </form>
-        </>
-
-
-    )
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        onChange={(e) => setFile(e.target.files[0])}
+        type="file"
+        accept="image/*"
+      ></input>
+      <input
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        type="text"
+        placeholder="Caption"
+      ></input>
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
 
 export default ShelfForm;
